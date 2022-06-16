@@ -6,10 +6,12 @@ import router, { setupRouter } from "./router";
 import { setupPlugins } from "./plugin";
 import "@/styles/global.scss";
 
-const app = createApp(App);
-setupRouter(app);
-setupPlugins(app);
-app.use(createPinia());
-app.use(router);
+async function main() {
+  const app = createApp(App);
+  setupPlugins(app);
+  setupRouter(app);
 
-app.mount("#app");
+  await router.isReady();
+  app.mount("#app");
+}
+main();

@@ -47,20 +47,14 @@
 import { reactive } from "vue";
 import v from "@/plugin/validate";
 import userApi from "@/apis/userApi";
-import { store } from "@/utils";
+import util from "@/utils";
 import router from "@/router";
+import { CacheEnum } from "@/enum/cacheEnum";
 
 const { Form, Field, ErrorMessage } = v;
 
 const onSubmit = async (values: any) => {
-  const {
-    result: { token },
-  } = await userApi.login(values);
-  store.set("token", {
-    token,
-    expire: 50000,
-  });
-  router.push({ name: "home" });
+  util.user.login(values);
 };
 
 const schema = {

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <input
     type="text"
     class="input"
@@ -17,4 +17,4 @@ const props = defineProps({
 .input {
   @apply border border-gray-400 placeholder:text-sm w-full rounded-sm px-2 py-1 outline-none focus:ring-1 ring-offset-2 duration-200 focus:border-white;
 }
-</style>
+</style> -->

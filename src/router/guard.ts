@@ -1,21 +1,41 @@
 import store from "@/utils/store";
 import type { RouteLocationNormalized, Router } from "vue-router";
 import type { IData } from "@/utils/store";
-
+import user from "@/stores/userStore";
+import { CacheEnum } from "@/enum/cacheEnum";
+import utils from "@/utils";
+import menuStore from "@/stores/menuStore";
 class Guard {
   constructor(private router: Router) {}
   public run() {
-    this.router.beforeEach((to, from) => {
-      let token = store.get("token")?.token;
-      if (this.isLogin(to, token) === false) return { name: "login" };
-      if (this.isGuest(to, token) === false) return from;
-    });
+    this.router.beforeEach(this.beforeEach.bind(this));
   }
-  private isGuest(route: RouteLocationNormalized, token: IData | null) {
-    return Boolean(!route.meta.guest || (route.meta.guest && !token));
+  private beforeEach(
+    to: RouteLocationNormalized,
+    from: RouteLocationNormalized
+  ) {
+    if (this.isLogin(to) === false) return { name: "login" };
+    if (this.isGuest(to) === false) return from;
   }
-  private isLogin(route: RouteLocationNormalized, token: IData | null) {
-    return Boolean(!route.meta.auth || (route.meta.auth && token));
+  private getUserInfo() {
+    if (this.token()) user().getUserInfo();
+  }
+
+  private token(): string | null {
+    return store.get(CacheEnum.TOKEN_NAME)?.token;
+  }
+
+  private isGuest(route: RouteLocationNormalized) {
+    return Boolean(!route.meta.guest || (route.meta.guest && !this.token()));
+  }
+  private isLogin(route: RouteLocationNormalized) {
+    const state = Boolean(
+      !route.meta.auth || (route.meta.auth && this.token())
+    );
+    if (state === false) {
+      utils.store.set(CacheEnum.REDIRECT_ROUTE_NAME, route.name);
+    }
+    return state;
   }
 }
 

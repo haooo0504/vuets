@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from "vue-router";
-import { env } from "@/utils";
-const layouts = import.meta.globEager("../layouts/*.vue");
-const views = import.meta.globEager("../views/**/*.vue");
+import util from "@/utils";
+const layouts = import.meta.globEager("@/layouts/*.vue");
+const views = import.meta.globEager("@/views/**/*.vue");
 
 function getRoutes() {
   const layoutRoutes = [] as RouteRecordRaw[];
@@ -37,4 +37,4 @@ function getRouteByModule(file: string, module: { [key: string]: any }) {
   return Object.assign(route, module.default?.route);
 }
 
-export default getRoutes();
+export default getRoutes;

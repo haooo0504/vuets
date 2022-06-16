@@ -2,7 +2,7 @@ import { Random } from "mockjs";
 import type { MockMethod } from "vite-plugin-mock";
 export default [
   {
-    url: "/api/info",
+    url: "/api/user/info",
     method: "get",
     response: ({}) => {
       return {
@@ -10,10 +10,10 @@ export default [
         message: "成功",
         type: "success",
         result: {
-          name: "vben",
+          name: "admin",
           age: 18,
           avatar: "/123.jpg",
-          token: Random.string(10),
+          permissions: ["editor_markdown", "article_edit"],
         },
       };
     },
