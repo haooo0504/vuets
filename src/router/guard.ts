@@ -14,8 +14,10 @@ class Guard {
     to: RouteLocationNormalized,
     from: RouteLocationNormalized
   ) {
-    if (this.isLogin(to) === false) return { name: "login" };
-    if (this.isGuest(to) === false) return from;
+    // if (this.isLogin(to) === false) return { name: "login" };
+    // if (this.isGuest(to) === false) return from;
+    if (to.meta.auth && !this.token()) return { name: "login" };
+    if (to.meta.guest && this.token()) return from;
   }
   private getUserInfo() {
     if (this.token()) user().getUserInfo();
@@ -25,18 +27,18 @@ class Guard {
     return store.get(CacheEnum.TOKEN_NAME)?.token;
   }
 
-  private isGuest(route: RouteLocationNormalized) {
-    return Boolean(!route.meta.guest || (route.meta.guest && !this.token()));
-  }
-  private isLogin(route: RouteLocationNormalized) {
-    const state = Boolean(
-      !route.meta.auth || (route.meta.auth && this.token())
-    );
-    if (state === false) {
-      utils.store.set(CacheEnum.REDIRECT_ROUTE_NAME, route.name);
-    }
-    return state;
-  }
+  // private isGuest(route: RouteLocationNormalized) {
+  //   return Boolean(!route.meta.guest || (route.meta.guest && !this.token()));
+  // }
+  // private isLogin(route: RouteLocationNormalized) {
+  //   const state = Boolean(
+  //     !route.meta.auth || (route.meta.auth && this.token())
+  //   );
+  //   if (state === false) {
+  //     utils.store.set(CacheEnum.REDIRECT_ROUTE_NAME, route.name);
+  //   }
+  //   return state;
+  // }
 }
 
 export default (router: Router) => {

@@ -62,8 +62,12 @@ const menus = menuStore();
 const menu = storeToRefs(menus);
 
 const useStore = user();
+let isFullScreen = false;
 const fullscreen = () => {
-  document.documentElement.requestFullscreen();
+  isFullScreen
+    ? document.exitFullscreen()
+    : document.documentElement.requestFullscreen();
+  isFullScreen = !isFullScreen;
 };
 </script>
 

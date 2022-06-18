@@ -1,3 +1,6 @@
+import { CacheEnum } from "@/enum/cacheEnum";
+import router from "@/router";
+import store from "@/utils/store";
 import axios, { type AxiosRequestConfig } from "axios";
 
 export default class Axios {
@@ -26,6 +29,9 @@ export default class Axios {
     this.instance.interceptors.request.use(
       (config) => {
         // 在发送请求之前做些什么
+        config.headers = {
+          Authorization: "Bearer" + store.get(CacheEnum.TOKEN_NAME),
+        };
         return config;
       },
       (error) => {
@@ -42,6 +48,12 @@ export default class Axios {
       },
       (error) => {
         // 对响应错误做点什么
+        switch (error.response.status) {
+          case 401:
+            store.remove(CacheEnum.TOKEN_NAME);
+            router.push({ name: "login" });
+            break;
+        }
         return Promise.reject(error);
       }
     );

@@ -6,6 +6,10 @@ import router from "@/router";
 import { remove } from "lodash";
 import userStore from "../stores/userStore";
 
+export function isLogin() {
+  return Boolean(store.get(CacheEnum.TOKEN_NAME));
+}
+
 export async function login(values: ILoginData) {
   const {
     result: { token },

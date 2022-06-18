@@ -132,7 +132,7 @@ const handle = (pmenu: IMenu, cmenu?: IMenu) => {
             &:hover {
               dd {
                 display: block !important;
-                @apply block absolute left-full top-0 w-[200px] bg-gray-700;
+                @apply block absolute left-full z-50 top-0 w-[200px] bg-gray-700;
                 div {
                   display: block !important;
                 }

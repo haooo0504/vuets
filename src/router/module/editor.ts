@@ -24,6 +24,7 @@ export default {
       name: "base",
       path: "base",
       component: () => import("@/views/editor/base.vue"),
+      meta: { menu: { title: "富文本編輯器" } },
     },
   ],
 } as RouteRecordRaw;

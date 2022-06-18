@@ -1,5 +1,4 @@
 <template>
-  {{ form }}
   <Form
     class="bg-slate-300 h-screen flex justify-center items-center p-5"
     @submit="onSubmit"
@@ -44,12 +43,8 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
 import v from "@/plugin/validate";
-import userApi from "@/apis/userApi";
 import util from "@/utils";
-import router from "@/router";
-import { CacheEnum } from "@/enum/cacheEnum";
 
 const { Form, Field, ErrorMessage } = v;
 
@@ -62,10 +57,6 @@ const schema = {
   password: { required: true, min: 6 },
 };
 
-const form = reactive({
-  account: "abc",
-  password: "",
-});
 // import hdButtonVue from "@/components/form/hd-button.vue";
 </script>
 

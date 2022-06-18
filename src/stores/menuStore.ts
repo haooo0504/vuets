@@ -10,6 +10,7 @@ import router from "@/router";
 import utils from "@/utils";
 import { CacheEnum } from "@/enum/cacheEnum";
 import { ref } from "vue";
+import store from "@/utils/store";
 
 export default defineStore({
   id: "menu",
@@ -17,7 +18,7 @@ export default defineStore({
     return {
       menus: [] as IMenu[],
       historyMenu: [] as IMenu[],
-      close: ref(false),
+      close: ref(store.get(CacheEnum.MENU_IS_CLOSE) ?? false),
       route: ref(null as null | RouteLocationNormalized),
     };
   },
@@ -37,6 +38,7 @@ export default defineStore({
     },
     toggleState() {
       this.close = !this.close;
+      store.set(CacheEnum.MENU_IS_CLOSE, this.close);
       // console.log(this.close);
     },
     setCurrentMenu(route: RouteLocationNormalizedLoaded) {

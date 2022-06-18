@@ -5,6 +5,7 @@
         >後臺管理</router-link
       >
       <router-link
+        v-if="!utils.user.isLogin()"
         :to="{ name: 'login' }"
         class="button ml-5 !bg-orange-500 hover:!bg-orange-400"
         >用戶登入</router-link
@@ -13,12 +14,14 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import utils from "@/utils";
+</script>
 
 <style scoped></style>
 
-<script lang="ts">
+<!-- <script lang="ts">
 // export default {
 //   route: { name: "home" },
 // };
-</script>
+</script> -->

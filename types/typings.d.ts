@@ -10,3 +10,9 @@ declare namespace toastui {
     focus: () => void;
   }
 }
+
+declare class wangEditor {
+  constructor(el: string);
+  cerate: () => void;
+  config: { [key: string]: any };
+}

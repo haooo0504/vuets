@@ -8,6 +8,7 @@
       <div class="m-5">
         <router-view #default="{ Component }">
           <Transition
+            mode="out-in"
             appear
             class="animate__animated"
             enter-active-class="animate__fadeIn"
