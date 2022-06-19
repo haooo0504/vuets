@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 export default {
   name: "editor",
-  path: "/editor",
+  path: "/admin",
   component: () => import("@/layouts/admin.vue"),
   meta: {
     auth: true,
@@ -24,7 +24,7 @@ export default {
       name: "base",
       path: "base",
       component: () => import("@/views/editor/base.vue"),
-      meta: { menu: { title: "富文本編輯器" } },
+      meta: { menu: { title: "base" } },
     },
   ],
 } as RouteRecordRaw;

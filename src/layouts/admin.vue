@@ -29,6 +29,7 @@ import historyLink from "@/components/admin/historyLink.vue";
 import menuStore from "@/stores/menuStore";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { watch } from "vue";
+undefined;
 const route = useRoute();
 const menu = menuStore();
 menu.init();
