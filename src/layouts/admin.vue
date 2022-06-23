@@ -1,11 +1,16 @@
 <template>
-  <div class="admin min-h-screen w-screen flex">
-    <MenuComponent class="" />
+  <div class="admin relative min-h-screen w-screen flex">
+    <MenuComponent />
 
-    <div class="contect flex-1 bg-gray-100">
-      <Navbar />
-      <historyLink />
-      <div class="m-5">
+    <div class="contect grid grid-rows-[auto_1fr] w-full bg-gray-100">
+      <div>
+        <Navbar />
+        <historyLink
+          class="hidden md:block"
+          :class="{ 'md:hidden': !menu.isHistoryCollapse }"
+        />
+      </div>
+      <div class="m-5 relative overflow-auto">
         <router-view #default="{ Component }">
           <Transition
             mode="out-in"
@@ -14,7 +19,7 @@
             enter-active-class="animate__fadeIn"
             leave-active-class="animate__fadeOut"
           >
-            <component :is="Component" />
+            <component :is="Component" class="absolute w-full" />
           </Transition>
         </router-view>
       </div>
@@ -48,4 +53,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.animate__fadeIn {
+  animation-duration: 0.5s;
+}
+
+.animate__fadeOut {
+  animation-duration: 0.5s;
+}
+</style>

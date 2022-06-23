@@ -6,12 +6,41 @@ const routes = [
     name: "home",
     component: () => import("../views/home.vue"),
   },
+  // {
+  //   path: "/login",
+  //   name: "login",
+  //   component: () => import("../views/auth/login.vue"),
+  //   meta: { guest: true },
+  // },
+  // {
+  //   path: "/register",
+  //   name: "register",
+  //   component: () => import("../views/auth/register.vue"),
+  //   meta: { guest: true },
+  // },
+
   {
-    path: "/login",
-    name: "login",
-    component: () => import("../views/auth/login.vue"),
+    name: "auth",
+    path: "/auth",
+    redirect: "/auth/login",
+    component: () => import("@/layouts/auth.vue"),
     meta: { guest: true },
+    children: [
+      {
+        path: "login",
+        name: "login",
+        component: () => import("../views/auth/login.vue"),
+        meta: { guest: true },
+      },
+      {
+        path: "register",
+        name: "register",
+        component: () => import("../views/auth/register.vue"),
+        meta: { guest: true },
+      },
+    ],
   },
+
   {
     path: "/article",
     name: "article",

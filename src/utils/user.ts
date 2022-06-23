@@ -5,6 +5,8 @@ import util from "./index";
 import router from "@/router";
 import { remove } from "lodash";
 import userStore from "../stores/userStore";
+import { ElMessage } from "element-plus";
+import "element-plus/es/components/message/style/css";
 
 export function isLogin() {
   return Boolean(store.get(CacheEnum.TOKEN_NAME));
@@ -30,4 +32,9 @@ export function logout() {
   store.remove(CacheEnum.TOKEN_NAME);
   router.push("/");
   userStore().info = null;
+  ElMessage({
+    message: "登出成功",
+    type: "success",
+    duration: 2000,
+  });
 }

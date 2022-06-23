@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 export default {
   name: "error",
-  path: "/admin",
+  path: "/error",
   component: () => import("@/layouts/admin.vue"),
   meta: {
     auth: true,

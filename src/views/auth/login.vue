@@ -1,6 +1,6 @@
 <template>
   <Form
-    class="bg-slate-300 h-screen flex justify-center items-center p-5"
+    class="flex justify-center items-center p-5"
     @submit="onSubmit"
     :validation-schema="schema"
   >
@@ -10,16 +10,11 @@
       <div class="p-6">
         <h2 class="text-center text-gray-900 text-lg mt-3 md:mt-5">會員登入</h2>
         <div class="mt-5 md:mt-9">
-          <Field
-            name="account"
-            value="admin@admin.com"
-            class="input"
-            label="帳號"
-          />
+          <Field name="account" value="admin111" class="input" label="帳號" />
           <ErrorMessage name="account" class="error" />
           <Field
             name="password"
-            value="admin12345"
+            value="admin111"
             class="input mt-5"
             label="密碼"
             type="password"
@@ -30,8 +25,9 @@
         </div>
         <button class="button">登入</button>
         <div class="flex gap-3 justify-center mt-5">
-          <a href="" class="text-sm text-zinc-700">網站首頁</a>
-          <a href="" class="text-sm text-zinc-700">會員註冊</a>
+          <router-link to="/auth/register" class="text-sm text-zinc-700"
+            >會員註冊</router-link
+          >
           <a href="" class="text-sm text-zinc-700">找回密碼</a>
         </div>
       </div>
@@ -45,15 +41,23 @@
 <script setup lang="ts">
 import v from "@/plugin/validate";
 import util from "@/utils";
+import { ElMessage } from "element-plus";
+import userStore from "@/stores/userStore";
 
+const user = userStore();
 const { Form, Field, ErrorMessage } = v;
 
 const onSubmit = async (values: any) => {
-  util.user.login(values);
+  user.login(values);
+  // ElMessage({
+  //   message: "登入成功",
+  //   type: "success",
+  //   duration: 2000,
+  // });
 };
 
 const schema = {
-  account: { required: true, email: true },
+  account: { required: true },
   password: { required: true, min: 6 },
 };
 

@@ -4,7 +4,7 @@ import type { Router, RouteRecordRaw } from "vue-router";
 import autoloadModuleRoutes from "./module";
 import getRoutes from "./view";
 
-let routes = [] as RouteRecordRaw[];
+export let routes = [] as RouteRecordRaw[];
 if (util.env.VITE_ROUTE_AUTOLOAD) {
   routes = getRoutes();
 } else {

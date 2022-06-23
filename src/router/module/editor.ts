@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from "vue-router";
 
 export default {
   name: "editor",
-  path: "/admin",
+  path: "/editor",
   component: () => import("@/layouts/admin.vue"),
   meta: {
     auth: true,

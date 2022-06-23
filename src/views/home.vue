@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-orange-50 w-screen h-screen flex justify-center items-center">
+  <div class="bg-[#8592A2] w-screen h-screen flex justify-center items-center">
     <div>
       <router-link :to="{ name: 'admin.home' }" class="button"
         >後臺管理</router-link

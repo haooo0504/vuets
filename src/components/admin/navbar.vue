@@ -11,21 +11,24 @@
 
         <section
           :class="{ 'rotate-180': menus.close }"
-          class="mr-2 cursor-pointer"
+          class="mr-2 cursor-pointer duration-300"
         >
-          <i class="fas fa-angles-left duration-300"></i>
+          <i class="fas fa-angles-left text-gray-800"></i>
         </section>
       </div>
-      <Breadcrumb class="hidden md:block" />
+      <Breadcrumb
+        class="hidden md:block"
+        :class="{ 'md:hidden': !menus.isBreadcrumbCollapse }"
+      />
     </div>
 
     <div class="flex items-center relative">
-      <Notification class="mr-5" />
+      <Notification class="mr-5 text-gray-800" />
       <section @click="fullscreen()">
-        <i class="fas fa-maximize mr-5 cursor-pointer"></i>
+        <i class="fas fa-maximize mr-5 cursor-pointer text-gray-800"></i>
       </section>
       <el-dropdown>
-        <span class="el-dropdown-link">
+        <span class="el-dropdown-link text-gray-800">
           <el-icon class="fas fa-user">
             <arrow-down />
           </el-icon>
@@ -57,6 +60,7 @@ import menuStore from "@/stores/menuStore";
 import { storeToRefs } from "pinia";
 import Notification from "../notification.vue";
 import Breadcrumb from "../breadcrumb.vue";
+import ThemeSetting from "../ThemeSetting.vue";
 
 const menus = menuStore();
 const menu = storeToRefs(menus);

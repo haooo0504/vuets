@@ -1,43 +1,48 @@
 <template>
   <div class="admin-menu" :class="{ close: menu.close }">
-    <el-menu
-      router
-      default-active="2"
-      class="el-menu-vertical-demo"
-      :collapse="menu.close"
-      @open="handleOpen"
-      @close="handleClose"
-    >
-      <el-sub-menu
-        :index="menus.title"
-        v-for="(menus, index) of menu.menus"
-        :key="index"
-      >
-        <template #title>
-          <i :class="menus.icon" class="text-2xl"></i>
-          <span>{{ menus.title }}</span>
-        </template>
-        <el-menu-item
-          :index="cmenu.route?.split('.').pop()"
-          v-for="(cmenu, key) of menus?.children"
-          :key="key"
-          >{{ cmenu.title }}</el-menu-item
-        >
-      </el-sub-menu>
-    </el-menu>
+    <div class="menu w-[220px] bg-hd-bg-black">
+      <div class="logo text-hd-theme-color">
+        <i class="fab fa-codepen text-[30px]"></i>
+        <span class="aaa text-md ml-2">hello</span>
+      </div>
+      <div class="left-container">
+        <dl v-for="(menus, index) of menu.menus" :key="index">
+          <dt @click="handle(menus)">
+            <section>
+              <i :class="menus.icon" class="text-2xl"></i>
+              <span class="text-md ml-2">{{ menus.title }}</span>
+            </section>
+            <section
+              :class="{ 'rotate-180': menus.isClick }"
+              class="duration-300"
+            >
+              <i class="fas fa-angle-down"></i>
+            </section>
+          </dt>
+          <dd v-show="menus.isClick || refmenu.close.value">
+            <div
+              :class="{ active: cmenu?.isClick }"
+              v-for="(cmenu, key) of menus?.children"
+              :key="key"
+              @click="handle(menus, cmenu)"
+            >
+              {{ cmenu?.title }}
+            </div>
+          </dd>
+        </dl>
+      </div>
+      <div>
+        <ThemeSetting class="setting">
+          <span class="ml-2 text-base">設定</span>
+        </ThemeSetting>
+      </div>
+    </div>
+
     <div class="bg block md:hidden" @click="menu.toggleState()"></div>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from "@element-plus/icons-vue";
-
+<script setup lang="ts">
 import router from "@/router";
 
 import menuStore from "@/stores/menuStore";
@@ -51,43 +56,116 @@ const refmenu = storeToRefs(menu);
 const route = useRoute();
 watch(route, () => menu.setCurrentMenu(route), { immediate: true });
 
-const reset = () => {
-  menu.menus.forEach((menu) => {
-    menu.isClick = false;
-    menu.children?.forEach((cmenu) => {
-      cmenu.isClick = false;
-    });
-  });
-};
+// const reset = () => {
+//   menu.menus.forEach((menu) => {
+//     menu.isClick = false;
+//     menu.children?.forEach((cmenu) => {
+//       cmenu.isClick = false;
+//     });
+//   });
+// };
 
 const handle = (pmenu: IMenu, cmenu?: IMenu) => {
-  reset();
-  pmenu.isClick = true;
+  // reset();
+  pmenu.isClick = !pmenu.isClick;
   if (cmenu) {
     cmenu.isClick = true;
     router.push({ name: cmenu.route });
   }
 };
-
-const isCollapse = ref(true);
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
 </script>
 
 <style lang="scss" scoped>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
+.admin-menu {
+  .menu {
+    @apply h-full;
+    .logo {
+      @apply flex items-center p-4;
+    }
+    .left-container {
+      dl {
+        @apply text-gray-800 text-sm relative;
+        dt {
+          @apply text-sm p-4 flex justify-between cursor-pointer items-center;
+          section {
+            @apply flex items-center;
+          }
+        }
+        dd {
+          div {
+            @apply py-3 pl-4 m-2  text-gray-800 rounded-md cursor-pointer hover:bg-[#c1c2c4] duration-200;
+            &.active {
+              @apply bg-gray-400 text-white;
+            }
+          }
+        }
+      }
+    }
+    .setting {
+      @apply w-[220px]  absolute bottom-0 py-4 px-4 text-[28px];
+    }
+  }
 }
 
+@media screen and(min-width:768px) {
+  .admin-menu {
+    &.close {
+      .menu {
+        width: 65px;
+
+        .logo {
+          @apply flex justify-center;
+
+          span {
+            @apply hidden;
+          }
+        }
+        .left-container {
+          dl {
+            @apply relative;
+            dt {
+              @apply flex justify-center;
+              section {
+                span {
+                  @apply hidden;
+                }
+                &:nth-of-type(2) {
+                  @apply hidden;
+                }
+              }
+            }
+            dd {
+              div {
+                @apply hidden;
+              }
+            }
+
+            &:hover {
+              dd {
+                display: block !important;
+                @apply block absolute left-full z-50 top-0 w-[200px] bg-[#DCDDDF];
+                div {
+                  display: block !important;
+                }
+              }
+            }
+          }
+        }
+        .setting {
+          @apply w-[65px] flex justify-center;
+
+          span {
+            @apply hidden;
+          }
+        }
+      }
+    }
+  }
+}
 @media screen and(max-width:768px) {
   .admin-menu {
     @apply h-screen w-[200px] absolute left-0 top-0 z-50;
-    .el-menu-vertical-demo {
+    .menu {
       @apply h-full z-50 absolute;
       .close {
       }

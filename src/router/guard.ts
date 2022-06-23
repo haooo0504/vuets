@@ -16,7 +16,10 @@ class Guard {
   ) {
     // if (this.isLogin(to) === false) return { name: "login" };
     // if (this.isGuest(to) === false) return from;
-    if (to.meta.auth && !this.token()) return { name: "login" };
+    if (to.meta.auth && !this.token()) {
+      store.set(CacheEnum.REDIRECT_ROUTE_NAME, to.name);
+      return { name: "login" };
+    }
     if (to.meta.guest && this.token()) return from;
   }
   private getUserInfo() {
@@ -24,7 +27,7 @@ class Guard {
   }
 
   private token(): string | null {
-    return store.get(CacheEnum.TOKEN_NAME)?.token;
+    return store.get(CacheEnum.TOKEN_NAME);
   }
 
   // private isGuest(route: RouteLocationNormalized) {

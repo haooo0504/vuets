@@ -20,6 +20,11 @@ export default defineStore({
       historyMenu: [] as IMenu[],
       close: ref(store.get(CacheEnum.MENU_IS_CLOSE) ?? false),
       route: ref(null as null | RouteLocationNormalized),
+      isMenuCollapse: <boolean>store.get(CacheEnum.MENU_IS_CLOSE) ?? false,
+      isHistoryCollapse:
+        <boolean>store.get(CacheEnum.HISTORYLINK_IS_SHOW) ?? false,
+      isBreadcrumbCollapse:
+        <boolean>store.get(CacheEnum.BREADCRUMB_IS_SHOW) ?? false,
     };
   },
   actions: {
@@ -83,6 +88,19 @@ export default defineStore({
           return menu;
         })
         .filter((menu) => menu.children?.length);
+    },
+    toggleMenu() {
+      this.isMenuCollapse = !this.isMenuCollapse;
+      store.set(CacheEnum.MENU_IS_CLOSE, this.isMenuCollapse);
+    },
+
+    // 開關歷史菜單
+    toggleHistoryLink() {
+      store.set(CacheEnum.HISTORYLINK_IS_SHOW, this.isHistoryCollapse);
+    },
+    // 開關麵包屑
+    toggleBreadcrumb() {
+      store.set(CacheEnum.BREADCRUMB_IS_SHOW, this.isBreadcrumbCollapse);
     },
   },
 });
