@@ -10,11 +10,11 @@
       <div class="p-6">
         <h2 class="text-center text-gray-900 text-lg mt-3 md:mt-5">會員登入</h2>
         <div class="mt-5 md:mt-9">
-          <Field name="account" value="admin111" class="input" label="帳號" />
+          <Field name="account" value="admin123" class="input" label="帳號" />
           <ErrorMessage name="account" class="error" />
           <Field
             name="password"
-            value="admin111"
+            value="admin123"
             class="input mt-5"
             label="密碼"
             type="password"
@@ -25,6 +25,9 @@
         </div>
         <button class="button">登入</button>
         <div class="flex gap-3 justify-center mt-5">
+          <router-link to="/" class="text-sm text-zinc-700"
+            >網站首頁</router-link
+          >
           <router-link to="/auth/register" class="text-sm text-zinc-700"
             >會員註冊</router-link
           >
@@ -49,11 +52,6 @@ const { Form, Field, ErrorMessage } = v;
 
 const onSubmit = async (values: any) => {
   user.login(values);
-  // ElMessage({
-  //   message: "登入成功",
-  //   type: "success",
-  //   duration: 2000,
-  // });
 };
 
 const schema = {
@@ -70,11 +68,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.input {
-  @apply border border-gray-400 placeholder:text-sm w-full rounded-sm px-2 py-1 outline-none focus:ring-1 ring-offset-2 duration-200 focus:border-white;
-}
-.error {
-  @apply text-xs text-red-700;
-}
-</style>
+<style lang="scss" scoped></style>

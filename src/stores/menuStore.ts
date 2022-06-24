@@ -22,9 +22,9 @@ export default defineStore({
       route: ref(null as null | RouteLocationNormalized),
       isMenuCollapse: <boolean>store.get(CacheEnum.MENU_IS_CLOSE) ?? false,
       isHistoryCollapse:
-        <boolean>store.get(CacheEnum.HISTORYLINK_IS_SHOW) ?? false,
+        <boolean>store.get(CacheEnum.HISTORYLINK_IS_SHOW) ?? true,
       isBreadcrumbCollapse:
-        <boolean>store.get(CacheEnum.BREADCRUMB_IS_SHOW) ?? false,
+        <boolean>store.get(CacheEnum.BREADCRUMB_IS_SHOW) ?? true,
     };
   },
   actions: {

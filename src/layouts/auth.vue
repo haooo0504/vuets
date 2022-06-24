@@ -1,5 +1,9 @@
 <template>
-  <div class="bg-slate-300 h-screen flex justify-center items-center p-5">
+  <div class="h-screen flex justify-center items-center p-5">
+    <img
+      src="/public/image/loginbg.jpg"
+      class="absolute flex h-full w-full object-cover"
+    />
     <router-view #default="{ Component }">
       <Transition
         mode="out-in"

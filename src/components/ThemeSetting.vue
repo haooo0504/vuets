@@ -3,7 +3,7 @@
     <section
       theme="outline"
       size="24"
-      class="cursor-pointer text-hd-theme-color flex items-center"
+      class="cursor-pointer text-ft-color flex items-center"
       @click="themeSettingDrawer = true"
     >
       <section
@@ -22,7 +22,7 @@
       :size="300"
     >
       <div class="p-8 flex flex-col justify-center text-lg">
-        <span class="mb-3 text-hd-theme-color m-auto">主題設定</span>
+        <span class="mb-3 text-ft-color m-auto">主題設定</span>
         <div class="my-5">
           <span class="text-hd-black1 mx-3">主題顏色</span>
           <el-color-picker
@@ -68,16 +68,16 @@ import utils from "@/utils";
 const menuStore = menuStores();
 // 主題設定
 const themeSettingDrawer = ref<boolean>(false);
-const themeColor = ref<string>(utils.store.get("themeColor") || "#fdcb6e");
+const themeColor = ref<string>(utils.store.get("themeColor") || "#3f3f3f");
 const themeColorList = ref<string[]>(["#fdcb6e", "#3DCAE0"]);
 const el: HTMLElement = document.documentElement;
-getComputedStyle(el).getPropertyValue(`--hd-theme-color`);
-el.style.setProperty("--hd-theme-color", themeColor.value);
-getComputedStyle(el).getPropertyValue(`--hd-theme-hover-color`);
-el.style.setProperty("--hd-theme-hover-color", themeColor.value + "80");
+getComputedStyle(el).getPropertyValue(`--ft-color`);
+el.style.setProperty("--ft-color", themeColor.value);
+getComputedStyle(el).getPropertyValue(`--ft-hover-color`);
+el.style.setProperty("--ft-hover-color", themeColor.value + "80");
 
 const changeThemeColor = (color: string): void => {
   utils.store.set("themeColor", color);
-  el.style.setProperty("--hd-theme-color", color);
+  el.style.setProperty("--ft-color", color);
 };
 </script>

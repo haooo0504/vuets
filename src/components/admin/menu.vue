@@ -1,7 +1,7 @@
 <template>
   <div class="admin-menu" :class="{ close: menu.close }">
     <div class="menu w-[220px] bg-hd-bg-black">
-      <div class="logo text-hd-theme-color">
+      <div class="logo">
         <i class="fab fa-codepen text-[30px]"></i>
         <span class="aaa text-md ml-2">hello</span>
       </div>
@@ -80,11 +80,11 @@ const handle = (pmenu: IMenu, cmenu?: IMenu) => {
   .menu {
     @apply h-full;
     .logo {
-      @apply flex items-center p-4;
+      @apply flex items-center p-4 text-ft-color;
     }
     .left-container {
       dl {
-        @apply text-gray-800 text-sm relative;
+        @apply text-ft-color text-sm relative;
         dt {
           @apply text-sm p-4 flex justify-between cursor-pointer items-center;
           section {
@@ -93,7 +93,7 @@ const handle = (pmenu: IMenu, cmenu?: IMenu) => {
         }
         dd {
           div {
-            @apply py-3 pl-4 m-2  text-gray-800 rounded-md cursor-pointer hover:bg-[#c1c2c4] duration-200;
+            @apply py-3 pl-4 m-2  text-ft-color rounded-md cursor-pointer hover:bg-[#c1c2c4] duration-200;
             &.active {
               @apply bg-gray-400 text-white;
             }

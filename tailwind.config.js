@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "hd-theme-color": "var(--hd-theme-color)",
-        "hd-theme-hover-color": "var(--hd-theme-hover-color)",
+        "ft-color": "var(--ft-color)",
+        "ft-hover-color": "var(--ft-hover-color)",
         "hd-white": "var(--hd-white)",
         "hd-black1": "var(--hd-black1)",
         "hd-black2": "var(--hd-black2)",

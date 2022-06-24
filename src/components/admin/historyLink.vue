@@ -3,21 +3,21 @@
     class="bg-gray-50 border-t border-b shadow-sm"
     v-show="menu.historyMenu.length"
   >
-    <div class="m-5 grid grid-flow-col gap-2 justify-start">
+    <div class="mx-5 my-3 grid grid-flow-col gap-2 justify-start">
       <div
         href=""
         v-for="(item, index) of menu.historyMenu"
         :key="index"
-        class="bg-white hover:bg-hd-theme-color rounded-md py-2 px-3 text-sm text-gray-600 border"
+        class="bg-white hover:bg-ft-color hover:text-white rounded-md py-2 px-3 text-sm border"
         :class="{
-          'bg-hd-theme-color text-white': $route.name == item.route,
+          'bg-ft-color text-white': $route.name == item.route,
         }"
       >
         <router-link :to="{ name: item.route }">
           {{ item.title }}
         </router-link>
         <span @click="menu.removeHistoryMenu(item)">
-          <i class="fas fa-xmark ml-2 hover:text-white cursor-pointer"></i>
+          <i class="fas fa-xmark ml-2 hover:text-black cursor-pointer"></i>
         </span>
       </div>
     </div>

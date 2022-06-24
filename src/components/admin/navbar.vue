@@ -13,7 +13,7 @@
           :class="{ 'rotate-180': menus.close }"
           class="mr-2 cursor-pointer duration-300"
         >
-          <i class="fas fa-angles-left text-gray-800"></i>
+          <i class="fas fa-angles-left text-[#3f3f3f] text-lg"></i>
         </section>
       </div>
       <Breadcrumb
@@ -23,12 +23,14 @@
     </div>
 
     <div class="flex items-center relative">
-      <Notification class="mr-5 text-gray-800" />
+      <Notification class="mr-5 text-[#3f3f3f] text-lg" />
       <section @click="fullscreen()">
-        <i class="fas fa-maximize mr-5 cursor-pointer text-gray-800"></i>
+        <i
+          class="fas fa-maximize mr-5 cursor-pointer text-[#3f3f3f] text-lg"
+        ></i>
       </section>
       <el-dropdown>
-        <span class="el-dropdown-link text-gray-800">
+        <span class="el-dropdown-link text-[#3f3f3f] text-lg">
           <el-icon class="fas fa-user">
             <arrow-down />
           </el-icon>

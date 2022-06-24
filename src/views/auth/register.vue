@@ -8,7 +8,9 @@
         :rules="rules"
         class="form"
       >
-        <h1>註冊帳號</h1>
+        <section class="flex justify-center">
+          <h1>註冊帳號</h1>
+        </section>
         <el-form-item prop="name">
           <el-input
             v-model="RegiserForm.name"
@@ -65,11 +67,14 @@
             >用戶登入</router-link
           >
         </div>
-        <el-form-item>
-          <el-button type="primary" @click="submitRegisterForm(RegisterFormRef)"
+        <section class="elbutton">
+          <el-button
+            type="primary"
+            @click="submitRegisterForm(RegisterFormRef)"
+            class="w-[150px] rounded-full text-gray-600 border-[#53745d] hover:bg-[#678F74] bg-[#678F74]"
             >註冊</el-button
           >
-        </el-form-item>
+        </section>
       </el-form>
     </div>
   </div>
@@ -138,4 +143,67 @@ const submitRegisterForm = async (formEl: FormInstance | undefined) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.form-container {
+  position: relative;
+  @apply flex justify-center items-center;
+
+  .container {
+    @apply relative w-[400px] min-h-[400px] rounded-[10px] flex justify-center items-center;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(136, 136, 136, 0.5);
+  }
+
+  .el-form {
+    @apply relative w-full h-full p-[40px];
+
+    h1 {
+      @apply relative text-hd-black1 text-[24px] font-semibold mb-[40px];
+      letter-spacing: 1px;
+    }
+
+    .el-input {
+      @apply w-full border-0 outline-none px-[20px] py-[10px] rounded-[35px] text-base focus:ring-1 ring-offset-2 duration-200 focus:border-white;
+      border: 1px solid rgba(136, 136, 136, 0.5);
+
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+      ::placeholder {
+        color: var(--hd-black1) !important;
+      }
+      :deep(.el-input__suffix-inner) {
+        @apply text-green-500;
+      }
+    }
+  }
+}
+.elbutton {
+  @apply flex justify-center items-center mt-5 w-auto;
+}
+:deep(.el-input__wrapper) {
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+:deep(.el-button) {
+  &.el-button--primary:not(.is-text) {
+    background-color: #678f74 !important;
+    border: #678f74 !important;
+    border-color: transparent !important;
+    color: #fff !important;
+  }
+  &:hover,
+  &.el-button--primary:not(.is-text):hover {
+    background-color: #53745d !important;
+    border-color: transparent !important;
+    color: #fff !important;
+  }
+  &:focus {
+    border-color: #53745d !important;
+    color: #53745d !important;
+  }
+}
+</style>
