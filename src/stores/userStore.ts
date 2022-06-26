@@ -21,7 +21,7 @@ export default defineStore({
   id: "user",
   state: () => {
     return {
-      info: {} as null | User,
+      info: {} as null | IUser,
       auth: getAuth(),
       firebasestore: firebaseStores(),
     };
@@ -38,7 +38,7 @@ export default defineStore({
             this.info = (await this.firebasestore.get(
               "users",
               user.displayName!
-            )) as null | User;
+            )) as null | IUser;
             // setTimeout(() => resolve(user), 3000) // 模擬網路延遲
             resolve(user);
           } else {
@@ -103,7 +103,7 @@ export default defineStore({
         .then(async (userCredential) => {
           await this.permissionlist();
           const user = userCredential.user;
-          if (this.info) {
+          if (this.info?.active) {
             utils.store.set(CacheEnum.TOKEN_NAME, user.uid);
             const routeName =
               utils.store.get(CacheEnum.REDIRECT_ROUTE_NAME) ?? "home";

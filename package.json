@@ -8,12 +8,14 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.6",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@types/echarts": "^4.9.15",
     "@vee-validate/i18n": "^4.5.11",
     "@vee-validate/rules": "^4.5.11",
+    "@vue/runtime-core": "^3.2.37",
     "@wangeditor/editor": "^5.1.1",
     "@wangeditor/editor-for-vue": "^5.1.11",
     "axios": "^0.27.2",

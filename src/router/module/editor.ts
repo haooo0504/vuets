@@ -24,7 +24,7 @@ export default {
       name: "base",
       path: "base",
       component: () => import("@/views/editor/base.vue"),
-      meta: { menu: { title: "base" } },
+      meta: { menu: { title: "base" }, permission: "admin" },
     },
   ],
 } as RouteRecordRaw;

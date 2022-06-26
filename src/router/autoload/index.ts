@@ -5,11 +5,8 @@ import autoloadModuleRoutes from "./module";
 import getRoutes from "./view";
 
 export let routes = [] as RouteRecordRaw[];
-if (util.env.VITE_ROUTE_AUTOLOAD) {
-  routes = getRoutes();
-} else {
-  routes = autoloadModuleRoutes();
-}
+
+routes = autoloadModuleRoutes();
 
 function autoload(router: Router) {
   const user = userStore();

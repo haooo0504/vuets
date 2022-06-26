@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen relative bg-slate-500 flex items-center">
+  <div class="w-screen h-screen relative flex items-center">
     <img
       src="/public/image/bg.jpg"
       class="absolute object-cover h-full w-full"
@@ -50,7 +50,7 @@ nextTick(() => {
 
 @media screen and(max-width:768px) {
   div {
-    @apply justify-center;
+    @apply justify-center bg-slate-500;
     img {
       @apply hidden;
     }
